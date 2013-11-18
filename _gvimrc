@@ -1,0 +1,98 @@
+"-----------------------------------------------------------------------------
+" Gvim Options
+"
+" Matthew Sanchez
+" ----------------------------------------------------------------------------
+set nu
+set nowrap
+set guifont=Consolas:h8:cANSI
+set hlsearch
+set incsearch
+set ignorecase
+set ruler
+set showcmd
+set diffopt=iwhite,filler
+
+set nobackup
+"set nowritebackup
+
+set smartindent
+set shiftwidth=2
+set expandtab
+set tabstop=8
+
+syntax on
+
+set wildignore=*.o
+
+highlight Normal guibg=white   guifg=black
+highlight Cursor guibg=Red     guifg=NONE
+highlight Search term=reverse  ctermbg=14    guibg=green
+highlight Visual term=reverse  cterm=reverse ctermfg=0 ctermbg=14 guifg=yellow guibg=black
+
+"colorscheme bluechia
+"colorscheme torte
+
+"---------------------------------------------------------------------------
+" Mini Buffer Explorer Plugin Settings
+"---------------------------------------------------------------------------
+" let g:miniBufExplorerMoreThanOne = 4
+" hi MBEVisibleChanged guifg=red
+" hi MBEVisibleNormal  guifg=red
+" map t :TMiniBufExplorer
+
+"---------------------------------------------------------------------------
+" Multiple Search Plugin Settings
+"---------------------------------------------------------------------------
+" let g:MultipleSearchColorSequence =     "green, yellow, blue,  red,   magenta, cyan,  gray,  brown"
+" let g:MultipleSearchTextColorSequence = "black, black,  white, white, white,   black, black, white"
+
+"---------------------------------------------------------------------------
+" Taglist Settings
+"---------------------------------------------------------------------------
+"let Tlist_Ctags_Cmd = '/:/home/sanchezm/bin/ctags/bin/ctags'
+
+"-----------------------------------------------------------------------------
+" Key Remapping
+"-----------------------------------------------------------------------------
+"map <S-F1> :call Blockcomment()<CR>
+"map <F1>   available
+"map <F2>   available
+ map <F3>   :BD<CR>
+"map <F4>   available
+ map <F5>   :e<CR>
+"map <F6>   available
+ map <F7>   :bprev!<CR>
+ map <F8>   :bnext!<CR>
+"map <F9>   available
+"map <F10>  available
+ map <F11>  :g//d<CR>
+ map <F12>  :redir @a:g//:redir END:new:put! a<CR>
+
+ map <C-n> o---matts------------------------------>>>
+
+"-----------------------------------------------------------------------------
+" Diff Mappings
+"-----------------------------------------------------------------------------
+ map du :diffupdate<CR>
+ map do :diffget<CR>
+ map dp :diffput<CR>
+
+"-----------------------------------------------------------------------------
+"  Local Functions
+"-----------------------------------------------------------------------------
+function! C_template()
+  "0read /:/home/sanchezm/.vim/macros/c_template_gen.c
+endfunction
+
+" Redirect g search output: After searching for some text, enter :Filter
+" command! -nargs=? Filter let @a='' | execute 'g//y A' | new | setlocal bt=nofile | put! a
+
+"------------------------------------------------------------------------------
+" Create My Menus
+"------------------------------------------------------------------------------
+amenu &My\ Stuff.&Trim\ blanks:%s/\s\+$//   :%s/\s\+$//<CR>
+amenu  My\ Stuff.Reload\ gvimrc             :source ~\_gvimrc<CR>
+amenu  My\ Stuff.Refresh                    :e<CR>
+amenu  My\ Stuff.C\ Template                :call C_template()<CR>
+
